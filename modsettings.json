@@ -1,0 +1,97 @@
+{
+    "Version": "1.00",
+    "Sections": [
+	{
+            "Name": "GeneralSettings",
+            "Description": "Related To General Settings For The Mod",
+            "IsAdvanced": false,
+            "Keys": [
+				{
+                    "Value": true,
+                    "Name": "AllowAlteringDungeonLights",
+                    "Description": "If Mod Should Affect Dungeon Light Sources || Default = True",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+				{
+                    "Value": {
+                        "r": 255,
+                        "g": 161,
+                        "b": 72,
+                        "a": 255
+                    },
+                    "Name": "DungeonLightColor",
+                    "Description": "Color Dungeon Light Sources Will Emit",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ColorKey"
+                },
+				{
+                    "Min": 0,
+                    "Max": 100,
+                    "Value": 8,
+                    "Name": "DungeonLightIntensity",
+                    "Description": "Brightness/Intensity Multiplier For Dungeon Light Sources",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                },
+				{
+                    "Value": true,
+                    "Name": "AllowAlteringCityLights",
+                    "Description": "If Mod Should Affect Exterior City Lights, Such As Streetlamps || Default = True",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+				{
+                    "Value": {
+                        "r": 255,
+                        "g": 196,
+                        "b": 137,
+                        "a": 255
+                    },
+                    "Name": "CityLightColor",
+                    "Description": "Color Exterior City Lights Will Emit",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ColorKey"
+                },
+				{
+                    "Min": 0,
+                    "Max": 100,
+                    "Value": 10,
+                    "Name": "CityLightIntensity",
+                    "Description": "Brightness/Intensity Multiplier For Exterior City Lights",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                },
+				{
+                    "Value": false,
+                    "Name": "AllowAlteringBuildingInteriorLights",
+                    "Description": "If Mod Should Affect Interior Buildings Lights, Such As Taverns And Shops || Default = False",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+				{
+                    "Value": {
+                        "r": 255,
+                        "g": 255,
+                        "b": 255,
+                        "a": 255
+                    },
+                    "Name": "BuildingInteriorLightColor",
+                    "Description": "Color Interior Building Lights Will Emit",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ColorKey"
+                },
+				{
+                    "Min": 0,
+                    "Max": 100,
+                    "Value": 10,
+                    "Name": "BuildingInteriorLightIntensity",
+                    "Description": "Brightness/Intensity Multiplier For Interior Building Lights",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                }
+            ],
+            "$version": "v1"
+        }
+    ]
+}

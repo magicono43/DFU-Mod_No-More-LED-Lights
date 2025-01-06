@@ -1,0 +1,14 @@
+{
+    "ModTitle": "NoMoreLEDLights",
+    "ModVersion": "1.00",
+    "ModAuthor": "Kirk.O",
+    "ContactInfo": "kirkoliveri@gmail.com",
+    "DFUnity_Version": "1.0.0",
+    "ModDescription": "Gives lights a warmer less office light feel, as well as options to customize these values.",
+    "GUID": "5b7a2164-c571-4701-ba7d-f28113d788dd",
+    "Files": [
+        "Assets/Game/Mods/DFU-Mod_No-More-LED-Lights/modsettings.json",
+        "Assets/Game/Mods/DFU-Mod_No-More-LED-Lights/Scripts/NoMoreLEDLightsMain.cs"
+    ],
+    "Dependencies": []
+}
