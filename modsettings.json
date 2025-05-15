@@ -89,6 +89,34 @@
                     "Description": "Brightness/Intensity Multiplier For Interior Building Lights",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                },
+				{
+                    "Value": true,
+                    "Name": "AllowAlteringPlayerTorch",
+                    "Description": "If Mod Should Affect The Player Torch || Default = True",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+				{
+                    "Value": {
+                        "r": 255,
+                        "g": 161,
+                        "b": 72,
+                        "a": 255
+                    },
+                    "Name": "PlayerTorchColor",
+                    "Description": "Color The Player Torch Will Emit",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ColorKey"
+                },
+				{
+                    "Min": 0,
+                    "Max": 100,
+                    "Value": 8,
+                    "Name": "PlayerTorchIntensity",
+                    "Description": "Brightness/Intensity Multiplier For The Player Torch (DOES NOT WORK CURRENTLY)",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
                 }
             ],
             "$version": "v1"

@@ -3,8 +3,8 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Author:          Kirk.O
 // Created On: 	    1/4/2025, 9:00 AM
-// Last Edit:		1/5/2025, 5:30 PM
-// Version:			1.00
+// Last Edit:		5/15/2025, 1:30 AM
+// Version:			1.10
 // Special Thanks:  
 // Modifier:
 
@@ -40,7 +40,13 @@ namespace NoMoreLEDLights
         public static Color32 BuildingInteriorLightColor { get; set; }
         public static int BuildingInteriorLightIntensity { get; set; }
 
+        public static bool AlterPlayerTorch { get; set; }
+        public static Color32 PlayerTorchColor { get; set; }
+        public static int PlayerTorchIntensity { get; set; }
+
         public static bool exceptionLogging = true;
+
+        public static bool changedPlayerTorch = false;
 
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams)
@@ -89,6 +95,10 @@ namespace NoMoreLEDLights
             BuildingInteriorLightColor = mod.GetSettings().GetValue<Color32>("GeneralSettings", "BuildingInteriorLightColor");
             BuildingInteriorLightIntensity = mod.GetSettings().GetValue<int>("GeneralSettings", "BuildingInteriorLightIntensity");
 
+            AlterPlayerTorch = mod.GetSettings().GetValue<bool>("GeneralSettings", "AllowAlteringPlayerTorch");
+            PlayerTorchColor = mod.GetSettings().GetValue<Color32>("GeneralSettings", "PlayerTorchColor");
+            PlayerTorchIntensity = mod.GetSettings().GetValue<int>("GeneralSettings", "PlayerTorchIntensity");
+
             exceptionLogging = true;
 
             UpdateSceneLights();
@@ -104,6 +114,31 @@ namespace NoMoreLEDLights
                 float dungeonLightRealIntensity = (float)(DungeonLightIntensity / 10f);
                 float cityLightRealIntensity = (float)(CityLightIntensity / 10f);
                 float buildingInteriorLightRealIntensity = (float)(BuildingInteriorLightIntensity / 10f);
+                float playerTorchRealIntensity = (float)(PlayerTorchIntensity / 10f);
+
+                if (AlterPlayerTorch)
+                {
+                    Light playerLightSource = GameManager.Instance.PlayerObject.GetComponent<EnablePlayerTorch>().PlayerTorch.GetComponent<Light>();
+                    if (playerLightSource != null)
+                    {
+                        playerLightSource.color = PlayerTorchColor;
+                        playerLightSource.intensity = playerTorchRealIntensity;
+                        changedPlayerTorch = true;
+                    }
+                }
+                else
+                {
+                    if (changedPlayerTorch)
+                    {
+                        Light playerLightSource = GameManager.Instance.PlayerObject.GetComponent<EnablePlayerTorch>().PlayerTorch.GetComponent<Light>();
+                        if (playerLightSource != null)
+                        {
+                            playerLightSource.color = new Color(1, 1, 1);
+                            playerLightSource.intensity = 1.25f;
+                            changedPlayerTorch = false;
+                        }
+                    }
+                }
 
                 Light[] lights;
                 lights = FindObjectsOfType<Light>();
