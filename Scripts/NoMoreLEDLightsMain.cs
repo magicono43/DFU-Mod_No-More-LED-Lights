@@ -3,7 +3,7 @@
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
 // Author:          Kirk.O
 // Created On: 	    1/4/2025, 9:00 AM
-// Last Edit:		5/15/2025, 1:30 AM
+// Last Edit:		5/15/2025, 2:00 PM
 // Version:			1.10
 // Special Thanks:  
 // Modifier:
@@ -14,7 +14,6 @@ using DaggerfallWorkshop.Game.Utility.ModSupport;
 using DaggerfallWorkshop.Game.Serialization;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
 using System;
-using DaggerfallWorkshop.Game.UserInterfaceWindows;
 using DaggerfallWorkshop.Game.Utility;
 using DaggerfallWorkshop;
 using DaggerfallConnect;
@@ -46,6 +45,9 @@ namespace NoMoreLEDLights
 
         public static bool exceptionLogging = true;
 
+        // Mod Compatibility Check Values
+        public static bool DarkerDungeonsCheck { get; set; }
+
         public static bool changedPlayerTorch = false;
 
         [Invoke(StateManager.StateTypes.Start, 0)]
@@ -67,6 +69,8 @@ namespace NoMoreLEDLights
             Instance = this;
 
             mod.LoadSettings();
+
+            ModCompatibilityChecking();
 
             StartGameBehaviour.OnStartGame += UpdateLights_OnStartGame;
             SaveLoadManager.OnLoad += UpdateLights_OnSaveLoad;
@@ -104,6 +108,13 @@ namespace NoMoreLEDLights
             UpdateSceneLights();
         }
 
+        private void ModCompatibilityChecking()
+        {
+            // Darker Dungeons mod: https://www.nexusmods.com/daggerfallunity/mods/286
+            Mod darkerDungeons = ModManager.Instance.GetModFromGUID("e911251d-00f9-4d0a-beed-546bd2a5624a");
+            DarkerDungeonsCheck = darkerDungeons != null ? true : false;
+        }
+
         public static void UpdateSceneLights()
         {
             try
@@ -136,6 +147,23 @@ namespace NoMoreLEDLights
                             playerLightSource.color = new Color(1, 1, 1);
                             playerLightSource.intensity = 1.25f;
                             changedPlayerTorch = false;
+                        }
+                    }
+                }
+
+                if (DarkerDungeonsCheck)
+                {
+                    if (AlterDungeonLights)
+                    {
+                        Light[] ddLights;
+                        ddLights = Resources.FindObjectsOfTypeAll(typeof(Light)) as Light[];
+                        for (int i = 0; i < ddLights.Length; i++)
+                        {
+                            if (ddLights[i].name == "ImprovedDungeonLight")
+                            {
+                                ddLights[i].color = DungeonLightColor;
+                                ddLights[i].intensity = dungeonLightRealIntensity;
+                            }
                         }
                     }
                 }
